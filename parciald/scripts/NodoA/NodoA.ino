@@ -1,6 +1,7 @@
 /**rosrun rosserial_python serial_node.py _port:=/dev/ttyACM0 _baud:=57600**/
+/** La instrucción anterior se corre en el terminal para usar arduino como nodo de ROS**/
 
-/**Librerias**/
+/**Librerías**/
 #include <ros.h>
 #include <std_msgs/String.h>
 #include <std_msgs/Bool.h>
@@ -16,7 +17,8 @@ const int Float_in = A1;
 
 /**Nombre nodo**/
 ros::NodeHandle NodoA;
-/**Variables usadas de la libreria std_msgs**/
+
+/**Variables usadas de la librería std_msgs**/
 std_msgs::Bool bool_send;
 std_msgs::Float32 float_send;
 std_msgs::UInt16  int_send;
@@ -27,10 +29,11 @@ ros::Publisher pubC("AC", &int_send);
 ros::Publisher pubD("AD", &float_send);
 
 /**Función callback, para recibir datos del nodo que se suscribe**/
-
 void callback(const std_msgs::String& data)
 {
-  String Recibe=data.data;
+  String Recibe=data.data;   // Recibe la información enviada del nodo H
+  /**El valor de la señal anológica se le envía al motor esta dada por la función "separa" que recibe un a variable tipo
+  string y devuelve una variable tipo int**/
   analogWrite(Control_Motor, separa(Recibe));
   if (Recibe=="")
     analogWrite(Control_Motor, 0);    
@@ -68,6 +71,8 @@ void loop()
 }
 
 /**Función para tratar el string recibido y devuelve un entero**/
+/**La función separa recibe un string, el for recorre todo el string buscando un valor numérico el cual es almacenado en la variable valor1, después
+con la función map los valores de 0 a 100 se escalan de 0 a 255**/
 int separa(String a)
 {
   int contador = 0, valor = 0, valor1 = 0;
