@@ -1,6 +1,6 @@
 LÓGICA FUZZY ROS
 ==============
-En este proyecto se realizó la creación de diferentes nodos con el propósito de intercambiar información entre ellos, leer información de Arduino y realizar una toma de decisiones por medio de lógica fuzzy para variar la velocidad de un motor
+En este proyecto se realizó la creación de diferentes nodos con el propósito de intercambiar información entre ellos, leer información de Arduino y realizar una toma de decisiones por medio de lógica fuzzy para variar la velocidad de un motor.
 
 FUNCIONAMIENTO
 ----------
